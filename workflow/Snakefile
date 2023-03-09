@@ -18,4 +18,21 @@ rule all:
         expand('rseqc_tin/{sample}.tin.xls', sample=SAMPLES),
         expand('rseqc_read_duplication/{sample}.DupRate_plot.pdf', sample=SAMPLES)
 
+include: "rules/fastqc.smk"
+
+include: "rules/fastp.smk"
+
+include: "rules/star.smk"
+
+include: "rules/index_bam"
+
+include: "rules/chk_mapping_metrics.smk"
+
+if config["SPECIES"] == "Humain":
+    include: "rules/humain_mapping_coverage.smk"
+
+if config["SPECIES"] == "Humain":
+    include: "rules/chk_tran_int_num.smk"
+
+include: "rules/quantify_reads.smk"
 
