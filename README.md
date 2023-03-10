@@ -28,4 +28,5 @@ $ emacs -nw run.sh
 ```
 - Step 4. run workflow
 ```
+$ conda activate RNAseq
 $ ./run.sh
