@@ -7,7 +7,7 @@
 - Step 0. clone github workflow project on flamingo
 ```
 $ ssh username@flamingo.intra.igr.fr
-$ git clone 
+$ git clone https://github.com/jinxin-wang/RNAseq_Pipeline.git
 ```
 - Step 1. create conda envirements 
 ```
