@@ -9,6 +9,9 @@
 $ ssh username@flamingo.intra.igr.fr
 $ cd /workflowpath
 $ git clone https://github.com/jinxin-wang/RNAseq_Pipeline.git
+```
+- Step 0. to update the code
+```
 $ git pull
 ```
 - Step 1. create conda envirements 
