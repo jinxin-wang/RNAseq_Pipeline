@@ -13,8 +13,8 @@ rule fastqc:
         mem_mb = 51200
     params:
         queue = "shortq",
-        fastqc = config["APP_FASTQC"],
-        adapters = config["FASTQC_ADAPTERS"]
+        fastqc = config["fastqc"]["app"],
+        adapters = config["fastqc"]["adapters"]
     shell:
         '{params.fastqc} -t {threads} -a {params.adapters} -o fastq_QC/ {input.fastq} 2> {log}'
 
@@ -33,7 +33,7 @@ rule fastqc_clean:
         mem_mb = 51200
     params:
         queue = "shortq",
-        fastqc = config["APP_FASTQC"],
-        adapters = config["FASTQC_ADAPTERS"]
+        fastqc = config["fastqc"]["app"],
+        adapters = config["fastqc"]["adapters"]
     shell:
         '{params.fastqc} -t {threads} -a {params.adapters} -o fastq_QC_clean/ {input} 2> {log}'

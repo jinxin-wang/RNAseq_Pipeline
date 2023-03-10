@@ -3,7 +3,6 @@ rule rseqc_geneBody_coverage:
     input:
         bam = "bam/{sample}.bam",
         bai = "bam/{sample}.bam.bai",
-        rseqc_ref = config["RSEQC_REF"]
     output:
         o1 = "rseqc_geneBody_coverage/{sample}.geneBodyCoverage.curves.pdf"
         # o2 = "rseqc_geneBody_coverage/{sample}.geneBodyCoverage.r",
@@ -13,7 +12,8 @@ rule rseqc_geneBody_coverage:
     threads : 1
     params:
         queue = "mediumq",
-        genbd = config["APP_GENE_BD_CVR"]
+        genbd = config["geneBody_converage"]["app"],
+        rseqc_ref = config["geneBody_converage"]["humain"]["ref"]
     resources:
         mem_mb = 5120
     shell:

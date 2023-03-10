@@ -3,7 +3,6 @@ rule rseqc_tin:
      input:
          bam = "bam/{sample}.bam",
          bai = "bam/{sample}.bam.bai",
-         rseqc_ref = config["RSEQC_REF"]
      output:
          o1 = "rseqc_tin/{sample}.tin.xls",
          o2 = "rseqc_tin/{sample}.summary.txt"
@@ -12,11 +11,12 @@ rule rseqc_tin:
      threads : 1
      params:
          queue = "mediumq",
-         tin   = config["APP_TIN"]
+         tin = config["tin"]["app"],
+         ref = config["tin"]["ref"],
      resources:
-         mem_mb = 5000
+         mem_mb = 5120
      shell:
-         "cd rseqc_tin/ ; {params.tin} -r {input.rseqc_ref} -c 30 -i ../{input.bam} 2> ../{log}"
+         "cd rseqc_tin/ ; {params.tin} -r {params.ref} -c 30 -i ../{input.bam} 2> ../{log}"
         
 ## A rule to check transcript integrity number with rseqc
 rule rseqc_readDuplication:
@@ -33,7 +33,7 @@ rule rseqc_readDuplication:
     threads : 1
     params:
         queue = "mediumq",
-        read_dup = config["APP_READ_DUP"]
+        read_dup = config["read_dup"]["app"]
     resources:
         mem_mb = 51200
     shell:
