@@ -9,9 +9,10 @@ rule samtools_flagstat:
         "logs/mapping_QC/{sample}.flagstat.log"
     threads : 1
     params:
-        queue = "shortq"
+        queue = "shortq",
+        samtools = config["samtools"]["app"],
     resources:
         mem_mb = 2000
     shell:
-        "samtools flagstat {input.bam} > {output} 2> {log}"
+        "{params.samtools} flagstat {input.bam} > {output} 2> {log}"
 

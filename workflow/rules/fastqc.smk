@@ -1,8 +1,7 @@
 ## A rule to generate fastq quality control
-
 rule fastqc:
     input:
-        fastq='fastq/{fastq_sample}.fastq.gz'
+        fastq='fastq/{fastq_sample}.fastq.gz',
     output:
         'fastq_QC/{fastq_sample}_fastqc.html',
         'fastq_QC/{fastq_sample}_fastqc.zip'
@@ -14,7 +13,7 @@ rule fastqc:
     params:
         queue = "shortq",
         fastqc = config["fastqc"]["app"],
-        adapters = config["fastqc"]["adapters"]
+        adapters = config["fastqc"]["adapters"],
     shell:
         '{params.fastqc} -t {threads} -a {params.adapters} -o fastq_QC/ {input.fastq} 2> {log}'
 

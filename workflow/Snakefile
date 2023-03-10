@@ -1,6 +1,6 @@
 import os
 
-configfile: "config/config.json"
+configfile: "workflow/config/config.json"
 
 SAMPLES,PAIRED_OR_SINGLE_END = glob_wildcards("fastq/{samples,.+}_{paired_or_single_end,[01]}.fastq.gz")
 FASTQ_SAMPLES, = glob_wildcards("fastq/{name}.fastq.gz")
