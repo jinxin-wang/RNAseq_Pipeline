@@ -35,13 +35,16 @@ include: "rules/index_bam"
 ## check mapping metrics 
 include: "rules/chk_mapping_metrics.smk"
 
+##  check mapping coverage 
 if config["SPECIES"] == "Humain":
     include: "rules/mapping_coverage.smk"
 
+## check transcript integrity number 
 if config["SPECIES"] == "Humain":
     include: "rules/chk_tran_int_num.smk"
 
+## quantify reads per annotation
 include: "rules/quantify_reads.smk"
 
+## quantifying abundances of transcripts 
 include: "rules/kallisto.smk"
-
