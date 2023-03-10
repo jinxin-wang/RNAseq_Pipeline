@@ -11,8 +11,8 @@ $ git clone https://github.com/jinxin-wang/RNAseq_Pipeline.git
 ```
 - Step 1. create conda envirements 
 ```
-$ conda env create -f RNA_env.txt
-$ conda env create -f pipeline_GATK_2.1.4_conda_env.txt
+$ conda env create --file RNA_env.txt --name RNAseq
+$ conda env create --file pipeline_GATK_2.1.4_conda_env.txt --name 
 ```
 - Step 2. deploy workflow
 ```
