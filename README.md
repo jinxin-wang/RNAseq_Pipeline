@@ -2,7 +2,7 @@
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥6.3.0-brightgreen.svg)](https://snakemake.github.io)
 
-## Usage on flamingo [Slurm]
+## Usage on flamingo
 
 - Step 0. clone github workflow project on flamingo
 ```
