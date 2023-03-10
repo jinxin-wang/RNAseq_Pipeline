@@ -12,7 +12,7 @@ rule rseqc_tin:
      params:
          queue = "mediumq",
          tin = config["tin"]["app"],
-         ref = config["tin"]["ref"],
+         ref = config["tin"]["humain"]["ref"],
      resources:
          mem_mb = 5120
      shell:

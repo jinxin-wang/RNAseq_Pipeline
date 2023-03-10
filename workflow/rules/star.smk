@@ -4,17 +4,18 @@
 ##      at the begin of the shell script. 
 rule star:
     input:
-        reads = "fastq_clean/{sample}_1.fastq.gz", "fastq_clean/{sample}_2.fastq.gz" config["paired"] == True else "fastq_clean/{sample}_0.fastq.gz"
+        reads = ["fastq_clean/{sample}_1.fastq.gz", "fastq_clean/{sample}_2.fastq.gz"] if config["paired"] == True else "fastq_clean/{sample}_0.fastq.gz", 
     output:
         bam = "bam/{sample}.bam"
     params:
         queue = "mediumq",
         tmp_directory_for_index = "TMP_STAR/tmp_genome_for_star_{sample}/",
         star  = config["star"]["app"],
-        index = config["star"]["humain"]["index"] if config["samples"] = "humain" else config["star"]["mouse"]["index"],
-        genome_fasta = config["star"]["humain"]["genome_fasta"] if config["samples"] = "humain" else config["star"]["mouse"]["genome_fasta"],
-        star_sjdbOverhang = config["star"]["humain"]["sjdboverhang"] if config["samples"] = "humain" else config["star"]["mouse"]["sjdboverhang"],
-        star_gtf = config["star"]["humain"]["gtf"] if config["samples"] = "humain" else config["star"]["mouse"]["gtf"],
+        outsammultnmax = config["star"]["outsammultnmax"],
+        sjdbOverhang = config["star"]["sjdboverhang"],
+        index = config["star"]["humain"]["index"] if config["samples"] == "humain" else config["star"]["mouse"]["index"],
+        genome_fasta = config["star"]["humain"]["genome_fasta"] if config["samples"] == "humain" else config["star"]["mouse"]["genome_fasta"],
+        star_gtf = config["star"]["humain"]["gtf"] if config["samples"] == "humain" else config["star"]["mouse"]["gtf"],
     log:
         "logs/bam/{sample}.bam.log"
     threads: 24
@@ -29,7 +30,7 @@ rule star:
         " --runThreadN {threads}"
         " --genomeDir {params.index}"
         " --readFilesIn {input.reads}"
-        " --sjdbOverhang {params.star_sjdbOverhang}"
+        " --sjdbOverhang {params.sjdbOverhang}"
         " --sjdbGTFfile {params.star_gtf}"
         " --twopassMode Basic"
         " --outSAMtype BAM SortedByCoordinate"
@@ -37,7 +38,7 @@ rule star:
         " --outSJfilterReads Unique"
         " --quantMode GeneCounts"
         " --outSAMstrandField intronMotif"
-        " --outSAMmultNmax 5"
+        " --outSAMmultNmax {params.outsammultnmax}"
         " --outFileNamePrefix {params.tmp_directory_for_index}{wildcards.sample}_TMP_ 2>> {log} ; "
         " mv {params.tmp_directory_for_index}{wildcards.sample}_TMP_Aligned.sortedByCoord.out.bam {output.bam} 2>> {log};"
  

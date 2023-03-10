@@ -1,7 +1,7 @@
 ## quantifying abundances of transcripts from RNA-Seq data
 rule quantification_with_kallisto:
     input:
-        reads = "fastq/{sample}_1.fastq.gz", "fastq/{sample}_2.fastq.gz" if config["paired"] else "fastq/{sample}_0.fastq.gz"
+        reads = ["fastq/{sample}_1.fastq.gz", "fastq/{sample}_2.fastq.gz"] if config["paired"] == True  else "fastq/{sample}_0.fastq.gz",
     output:
         dir   = "kallisto_targetID_count/{sample}/",
         h5    = "kallisto_targetID_count/{sample}/abundance.h5",
@@ -18,5 +18,5 @@ rule quantification_with_kallisto:
     shell:
         "{params.kallisto} quant --verbose -t {threads} "
         "  -i {params.index} "
-        "  -o {output.dir} {input.reads} "
+        "  -o {output.dir} {input.reads} 2> {log} "
     

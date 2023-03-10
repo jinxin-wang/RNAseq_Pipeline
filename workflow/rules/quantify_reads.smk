@@ -1,4 +1,31 @@
 ## A rule to quantify reads per annotation, with HTSeq
+rule quantification_with_HTSeq_genesID:
+    input:
+        bam = "bam/{sample}.bam",
+        bai = "bam/{sample}.bam.bai",
+    output:
+        gene_id_count = "HTSeq_geneID_count/{sample}_geneID_count.table"
+    log:
+        "logs/HTSeq_geneID_count/{sample}_geneID_count.log"
+    threads : 1
+    params:
+        queue = "mediumq",
+        htseq = config["htseq"]["app"],
+        strandness = config["htseq"]["strandness"],
+        gtf = config["htseq"]["humain"]["gtf"] if config["samples"] == "humain" else config["htseq"]["mouse"]["gtf"]
+    resources:
+        mem_mb = 20480
+    shell:
+        "{params.htseq}  "
+        " -f bam"
+        " -i gene_id"
+        " -r pos"
+        " {params.strandness}"
+        " {params.bam}"
+        " {params.gtf}"
+        " > {output.gene_id_count} 2> {log}"
+
+## A rule to quantify reads per annotation, with HTSeq
 rule quantification_with_HTSeq_transcriptID:
     input:
         bam = "bam/{sample}.bam",

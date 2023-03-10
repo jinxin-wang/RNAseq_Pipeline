@@ -20,31 +20,31 @@ rule all:
         expand('rseqc_read_duplication/{sample}.DupRate_plot.pdf', sample=SAMPLES),
         expand('kallisto_targetID_count/{sample}/abundance.tsv', sample=SAMPLES),
 
-## fastq quality control
+## fastq quality control with fastqc
 include: "rules/fastqc.smk"
 
-## clean fastq files 
+## clean fastq files with fastp
 include: "rules/fastp.smk"
 
-## map RNA samples
+## map RNA samples with star
 include: "rules/star.smk"
 
-## generate bam index 
-include: "rules/index_bam"
+## generate bam index with samtools
+include: "rules/index_bam.smk"
 
-## check mapping metrics 
+## check mapping metrics with samtools
 include: "rules/chk_mapping_metrics.smk"
 
-##  check mapping coverage 
-if config["SPECIES"] == "Humain":
+##  check mapping coverage with rseqc
+if config["samples"] == "humain":
     include: "rules/mapping_coverage.smk"
 
-## check transcript integrity number 
-if config["SPECIES"] == "Humain":
+## check transcript integrity number with rseqc
+if config["samples"] == "humain":
     include: "rules/chk_tran_int_num.smk"
 
-## quantify reads per annotation
+## quantify reads per annotation with HTSeq
 include: "rules/quantify_reads.smk"
 
-## quantifying abundances of transcripts 
+## quantifying abundances of transcripts with kallisto
 include: "rules/kallisto.smk"
