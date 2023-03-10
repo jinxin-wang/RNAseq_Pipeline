@@ -10,18 +10,24 @@ $ ssh username@flamingo.intra.igr.fr
 $ cd /workflowpath
 $ git clone https://github.com/jinxin-wang/RNAseq_Pipeline.git
 ```
+- Step 0. to update the code
+```
+$ cd /workflowpath/RNAseq_Pipeline
+$ git pull
+```
 - Step 1. create conda envirements 
 ```
-$ conda env create --file RNA_env.txt --name RNAseq
-$ conda env create --file pipeline_GATK_2.1.4_conda_env.txt --name pipeline_GATK_2.1.4_V2
+$ cd RNAseq_Pipeline
+$ conda env create --file envs/RNA_env.txt --name RNAseq
+$ conda env create --file envs/pipeline_GATK_2.1.4_conda_env.txt --name pipeline_GATK_2.1.4_V2
 ```
 - Step 2. deploy workflow
 ```
 $ cd /mnt/beegfs/scratch/username/yourprojectdir
 $ mkdir projectname
 $ cd projectname
-$ ln -s /workflowpath/workflow .
-$ cp /workflowpath/run.sh .
+$ ln -s /workflowpath/RNAseq_Pipeline/workflow .
+$ cp /workflowpath/RNAseq_Pipeline/run.sh .
 ```
 - Step 3. configure workflow
 ```
