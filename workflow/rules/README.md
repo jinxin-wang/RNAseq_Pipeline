@@ -131,3 +131,9 @@ is not equal to -1, than top-scoring alignments will always be output first, eve
 Minimum mRNA length (bp). mRNA smaller than “min_mRNA_length” will be skipped. default=100. set to 500 in the rule. 
 
 ## [transcript_integrity_number.smk ] rseqc [tin](https://rseqc.sourceforge.net/#tin-py) and [read_duplication](https://rseqc.sourceforge.net/#read-duplication-py)
+
+rule rseqc_tin:
+
+-c MINIMUM_COVERAGE, --minCov=MINIMUM_COVERAGE
+
+Minimum number of read mapped to a transcript. default=10
