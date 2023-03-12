@@ -2,7 +2,7 @@
 
 #### --sjdbOverhang 99
 
---sjdbOverhang specifies the length of the genomic sequence around the annotated junction
+**--sjdbOverhang** specifies the length of the genomic sequence around the annotated junction
 to be used in constructing the splice junctions database. Ideally, this length should be equal
 to the ReadLength-1, where ReadLength is the length of the reads. For instance, for Illumina
 2x100b paired-end reads, the ideal value is 100-1=99. In case of reads of varying length, the
@@ -13,7 +13,7 @@ well as the ideal value.
 
 [gtf file format](http://genome.ucsc.edu/FAQ/FAQformat#format4)
 
---sjdbGTFfile specifies the path to the file with annotated transcripts in the standard GTF
+**--sjdbGTFfile** specifies the path to the file with annotated transcripts in the standard GTF
 format. STAR will extract splice junctions from this file and use them to greatly improve
 accuracy of the mapping. While this is optional, and STAR can be run without annotations,
 using annotations is highly recommended whenever they are available. Starting from 2.4.1a,
@@ -21,7 +21,7 @@ the annotations can also be included on the fly at the mapping step.
 
 #### --twopassMode Basic
 
- Use '--twopassMode' Basic option to run STAR 2-pass mapping for each sample separately. Annotated 
+ Use **--twopassMode** Basic option to run STAR 2-pass mapping for each sample separately. Annotated 
  junctions will be included in both the 1st and 2nd passes. STAR will perform the 1st pass mapping,
 then it will automatically extract junctions, insert them into the genome index, and, finally, re-map
 all reads in the 2nd mapping pass. This option can be used with annotations, which can be included
@@ -72,7 +72,7 @@ uniquely mapping reads only
 
 #### --quantMode GeneCounts
 
-With --quantMode TranscriptomeSAM option STAR will output alignments translated into transcript
+With **--quantMode** TranscriptomeSAM option STAR will output alignments translated into transcript
 coordinates in the Aligned.toTranscriptome.out.bam file (in addition to alignments in genomic 
 coordinates in Aligned.*.sam/bam files). These transcriptomic alignments can be used with
 various transcript quantification software that require reads to be mapped to transcriptome, such as
@@ -113,7 +113,7 @@ In addition, it is recommended to remove the non-canonical junctions for Cufflin
 
 #### --outSAMmultNmax 5
 
-The --outSAMmultNmax parameter limits the number of output alignments (SAM lines) for
+The **--outSAMmultNmax** parameter limits the number of output alignments (SAM lines) for
 multimappers. For instance, --outSAMmultNmax 1 will output exactly one SAM line for each 11
 mapped read. Note that NH:i: tag in STAR will still report the actual number of loci that
 the reads map to, while the the number of reported alignments for a read in the SAM file is
@@ -126,7 +126,7 @@ is not equal to -1, than top-scoring alignments will always be output first, eve
 
 ## [mapping_coverage.smk] rule rseqc_geneBody_coverage: mapping coverage with [rseqc](https://rseqc.sourceforge.net/#genebody-coverage-py)
 
--l MIN_MRNA_LENGTH, --minimum_length=MIN_MRNA_LENGTH
+**-l MIN_MRNA_LENGTH, --minimum_length=MIN_MRNA_LENGTH**
 
 Minimum mRNA length (bp). mRNA smaller than “min_mRNA_length” will be skipped. **default=100, set to 500 in the rule.**
 
@@ -134,25 +134,25 @@ Minimum mRNA length (bp). mRNA smaller than “min_mRNA_length” will be skippe
 
 rule rseqc_tin:
 
--c MINIMUM_COVERAGE, --minCov=MINIMUM_COVERAGE
+**-c MINIMUM_COVERAGE, --minCov=MINIMUM_COVERAGE**
 
 Minimum number of read mapped to a transcript. **default=10， set to 30 in the rule.**
 
 ## [quantify_reads.smk] quantify reads per annotation
 
--r \<order\>, --order=\<order\>
+**-r \<order\>, --order=\<order\>**
 
 For paired-end data, the alignment have to be sorted either by read name or by alignment position. If your data is not sorted, use the samtools sort function of samtools to sort it. Use this option, with name or pos for <order> to indicate how the input data has been sorted. The default is name.
 
 If **name** is indicated, htseq-count expects all the alignments for the reads of a given read pair to appear in adjacent records in the input data. For **pos**, this is not expected; rather, read alignments whose mate alignment have not yet been seen are kept in a buffer in memory until the mate is found. While, strictly speaking, the latter will also work with unsorted data, sorting ensures that most alignment mates appear close to each other in the data and hence the buffer is much less likely to overflow.
 
--s \<yes/no/reverse\>, --stranded=\<yes/no/reverse\>
+**-s \<yes/no/reverse\>, --stranded=\<yes/no/reverse\>**
 
 Whether the data is from a strand-specific assay (default: yes)
 
 For **stranded=no**, a read is considered overlapping with a feature regardless of whether it is mapped to the same or the opposite strand as the feature. For **stranded=yes** and single-end reads, the read has to be mapped to the same strand as the feature. For paired-end reads, the first read has to be on the same strand and the second read on the opposite strand. For **stranded=reverse**, these rules are reversed.
  
--i \<id attribute\>, --idattr=\<id attribute\>
+**-i \<id attribute\>, --idattr=\<id attribute\>**
  
 GTF attribute to be used as feature ID. Several [GTF](http://genome.ucsc.edu/FAQ/FAQformat#format4) lines with the same feature ID will be considered as 
 parts of the same feature. The feature ID is used to identity the counts in the output table. 
