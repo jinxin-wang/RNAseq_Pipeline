@@ -1,5 +1,15 @@
 # 1. [star.smk](https://github.com/jinxin-wang/RNAseq_Pipeline/blob/main/workflow/rules/README.md#starsmk-rule-star-align-rna-seq-samples-using-star-review-some-options)
 
+# 2. [chk_mapping_metrics.smk](https://github.com/jinxin-wang/RNAseq_Pipeline/blob/main/workflow/rules/README.md#chk_mapping_metricssmk-rule-samtools_flagstat-mapping-metrics-with-samtools-flagstat)
+
+# 3. [mapping_coverage.smk](https://github.com/jinxin-wang/RNAseq_Pipeline/edit/main/workflow/rules/README.md#mapping_coveragesmk-rule-rseqc_genebody_coverage-mapping-coverage-with-rseqc)
+
+# 4. [transcript_integrity_number.smk](https://github.com/jinxin-wang/RNAseq_Pipeline/edit/main/workflow/rules/README.md#transcript_integrity_numbersmk-rseqc-tin-and-read_duplication)
+
+# 5. [quantify_reads.smk](https://github.com/jinxin-wang/RNAseq_Pipeline/edit/main/workflow/rules/README.md#quantify_readssmk-quantify-reads-per-annotation)
+
+# 6. [kallisto.smk](https://github.com/jinxin-wang/RNAseq_Pipeline/edit/main/workflow/rules/README.md#kallistosmk-quantifying-abundances-of-transcripts-with-kallisto)
+
 ## [star.smk] rule star: Align RNA-seq samples using [STAR](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf), review some options 
 
 #### --sjdbOverhang 99
