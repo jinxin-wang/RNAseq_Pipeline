@@ -142,7 +142,7 @@ Minimum number of read mapped to a transcript. **default=10， set to 30 in the 
 
 -i <id attribute>, --idattr=<id attribute>
  
-GTF attribute to be used as feature ID. Several GTF lines with the same feature ID will be considered as 
+GTF attribute to be used as feature ID. Several [GTF](http://genome.ucsc.edu/FAQ/FAQformat#format4) lines with the same feature ID will be considered as 
 parts of the same feature. The feature ID is used to identity the counts in the output table. 
  
 The default, suitable for RNA-Seq analysis using an Ensembl GTF file, is **gene_id**
