@@ -122,4 +122,12 @@ according to the order specified in --outMultimapperOrder option. If --outSAMmul
 is not equal to -1, than top-scoring alignments will always be output first, even for the default
 --outMultimapperOrder Old 2.4 option.
 
-## [chk_mapping_metrics.smk] rule samtools_flagstat: check mapping metrics with [samtools flagstat](http://www.htslib.org/doc/samtools-flagstat.html)
+## [chk_mapping_metrics.smk] rule samtools_flagstat: mapping metrics with [samtools flagstat](http://www.htslib.org/doc/samtools-flagstat.html)
+
+## [mapping_coverage.smk] rule rseqc_geneBody_coverage: mapping coverage with [rseqc](https://rseqc.sourceforge.net/#genebody-coverage-py)
+
+-l MIN_MRNA_LENGTH, --minimum_length=MIN_MRNA_LENGTH
+
+Minimum mRNA length (bp). mRNA smaller than “min_mRNA_length” will be skipped. default=100. set to 500 in the rule. 
+
+## [transcript_integrity_number.smk ] transcript integrity number with rseqc [tin](https://rseqc.sourceforge.net/#tin-py) and [read_duplication](https://rseqc.sourceforge.net/#read-duplication-py)
