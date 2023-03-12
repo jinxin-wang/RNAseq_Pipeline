@@ -14,7 +14,7 @@ rule rseqc_tin:
          tin = config["tin"]["app"],
          ref = config["tin"]["humain"]["ref"],
      resources:
-         mem_mb = 5120
+         mem_mb = 51200
      shell:
          "cd rseqc_tin/ ; {params.tin} -r {params.ref} -c 30 -i ../{input.bam} 2> ../{log}"
         
