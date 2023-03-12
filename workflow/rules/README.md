@@ -138,7 +138,13 @@ rule rseqc_tin:
 
 Minimum number of read mapped to a transcript. **default=10， set to 30 in the rule.**
 
-## quantify reads per annotation
+## [quantify_reads.smk] quantify reads per annotation
+
+-r <order>, --order=<order>
+
+For paired-end data, the alignment have to be sorted either by read name or by alignment position. If your data is not sorted, use the samtools sort function of samtools to sort it. Use this option, with name or pos for <order> to indicate how the input data has been sorted. The default is name.
+
+If name is indicated, htseq-count expects all the alignments for the reads of a given read pair to appear in adjacent records in the input data. For pos, this is not expected; rather, read alignments whose mate alignment have not yet been seen are kept in a buffer in memory until the mate is found. While, strictly speaking, the latter will also work with unsorted data, sorting ensures that most alignment mates appear close to each other in the data and hence the buffer is much less likely to overflow.
 
 -i <id attribute>, --idattr=<id attribute>
  
@@ -159,3 +165,4 @@ paper on DEXSeq for a discussion on why we prefer performing such analyses on th
 **gene_name**
  
 **transcript_name**
+
