@@ -140,13 +140,19 @@ Minimum number of read mapped to a transcript. **default=10， set to 30 in the 
 
 ## [quantify_reads.smk] quantify reads per annotation
 
--r <order>, --order=<order>
+-r \<order\>, --order=\<order\>
 
 For paired-end data, the alignment have to be sorted either by read name or by alignment position. If your data is not sorted, use the samtools sort function of samtools to sort it. Use this option, with name or pos for <order> to indicate how the input data has been sorted. The default is name.
 
-If name is indicated, htseq-count expects all the alignments for the reads of a given read pair to appear in adjacent records in the input data. For pos, this is not expected; rather, read alignments whose mate alignment have not yet been seen are kept in a buffer in memory until the mate is found. While, strictly speaking, the latter will also work with unsorted data, sorting ensures that most alignment mates appear close to each other in the data and hence the buffer is much less likely to overflow.
+If **name** is indicated, htseq-count expects all the alignments for the reads of a given read pair to appear in adjacent records in the input data. For **pos**, this is not expected; rather, read alignments whose mate alignment have not yet been seen are kept in a buffer in memory until the mate is found. While, strictly speaking, the latter will also work with unsorted data, sorting ensures that most alignment mates appear close to each other in the data and hence the buffer is much less likely to overflow.
 
--i <id attribute>, --idattr=<id attribute>
+-s \<yes/no/reverse\>, --stranded=\<yes/no/reverse\>
+
+Whether the data is from a strand-specific assay (default: yes)
+
+For **stranded=no**, a read is considered overlapping with a feature regardless of whether it is mapped to the same or the opposite strand as the feature. For stranded=yes and single-end reads, the read has to be mapped to the same strand as the feature. For paired-end reads, the first read has to be on the same strand and the second read on the opposite strand. For stranded=reverse, these rules are reversed.
+ 
+-i \<id attribute\>, --idattr=\<id attribute\>
  
 GTF attribute to be used as feature ID. Several [GTF](http://genome.ucsc.edu/FAQ/FAQformat#format4) lines with the same feature ID will be considered as 
 parts of the same feature. The feature ID is used to identity the counts in the output table. 
