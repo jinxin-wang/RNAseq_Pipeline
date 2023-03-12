@@ -33,7 +33,7 @@ include: "rules/star.smk"
 include: "rules/index_bam.smk"
 
 ## check mapping metrics with samtools
-include: "rules/chk_mapping_metrics.smk"
+include: "rules/mapping_metrics.smk"
 
 ##  check mapping coverage with rseqc
 if config["samples"] == "humain":
@@ -41,7 +41,7 @@ if config["samples"] == "humain":
 
 ## check transcript integrity number with rseqc
 if config["samples"] == "humain":
-    include: "rules/chk_tran_int_num.smk"
+    include: "rules/transcript_integrity_number.smk"
 
 ## quantify reads per annotation with HTSeq
 include: "rules/quantify_reads.smk"
