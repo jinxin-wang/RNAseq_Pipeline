@@ -1,4 +1,4 @@
-##  Align RNA-seq samples using [STAR](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf), review some options 
+##  rule star: Align RNA-seq samples using [STAR](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf), review some options 
 
 #### --sjdbOverhang 99
 
