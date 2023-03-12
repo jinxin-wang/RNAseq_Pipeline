@@ -1,4 +1,4 @@
-1. [star.smk]()
+# 1. [star.smk](https://github.com/jinxin-wang/RNAseq_Pipeline/blob/main/workflow/rules/README.md#starsmk-rule-star-align-rna-seq-samples-using-star-review-some-options)
 
 ## [star.smk] rule star: Align RNA-seq samples using [STAR](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf), review some options 
 
