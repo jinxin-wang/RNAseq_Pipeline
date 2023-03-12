@@ -1,6 +1,6 @@
 ## [Institut Gustave Roussy] RNAseq analysis pipeline
 
-[![Snakemake](https://img.shields.io/badge/snakemake-≥5.3.0-brightgreen.svg)](https://snakemake.github.io)
+[![Snakemake](https://img.shields.io/badge/snakemake-=5.23.0-brightgreen.svg)](https://snakemake.github.io)
 
 ## Usage on flamingo
 
