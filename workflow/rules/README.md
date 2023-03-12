@@ -130,10 +130,32 @@ is not equal to -1, than top-scoring alignments will always be output first, eve
 
 Minimum mRNA length (bp). mRNA smaller than “min_mRNA_length” will be skipped. **default=100, set to 500 in the rule.**
 
-## [transcript_integrity_number.smk ] rseqc [tin](https://rseqc.sourceforge.net/#tin-py) and [read_duplication](https://rseqc.sourceforge.net/#read-duplication-py)
+## [transcript_integrity_number.smk] rseqc [tin](https://rseqc.sourceforge.net/#tin-py) and [read_duplication](https://rseqc.sourceforge.net/#read-duplication-py)
 
 rule rseqc_tin:
 
 -c MINIMUM_COVERAGE, --minCov=MINIMUM_COVERAGE
 
 Minimum number of read mapped to a transcript. **default=10， set to 30 in the rule.**
+
+## quantify reads per annotation
+
+-i <id attribute>, --idattr=<id attribute>
+ 
+GTF attribute to be used as feature ID. Several GTF lines with the same feature ID will be considered as 
+parts of the same feature. The feature ID is used to identity the counts in the output table. 
+ 
+The default, suitable for RNA-Seq analysis using an Ensembl GTF file, is **gene_id**
+
+**transcript_id**
+
+In principle, you could instruct htseq-count to count for each of a gene’s transcript individually, by 
+specifying --idattr transcript_id. However, all reads mapping to exons shared by several transcripts will 
+then be considered ambiguous. (See second question.) Counting them for each transcript that contains the 
+exons would be possible but makes little sense for typical use cases. (See first question.) If you want to 
+perform differential expression analysis on the level of individual transcripts, maybe ahve a look at our 
+paper on DEXSeq for a discussion on why we prefer performing such analyses on the level of exons instead.
+ 
+gene_name
+ 
+transcript_name
