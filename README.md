@@ -18,7 +18,7 @@ $ git pull
 - Step 1. create conda envirements 
 ```
 $ cd RNAseq_Pipeline
-$ conda env create --file envs/RNA_env.txt --name RNAseq
+$ conda env create --file envs/RNA_env.txt --name RNA
 $ conda env create --file envs/pipeline_GATK_2.1.4_conda_env.txt --name pipeline_GATK_2.1.4_V2
 ```
 - Step 2. deploy workflow
@@ -35,5 +35,5 @@ $ emacs -nw run.sh
 ```
 - Step 4. run workflow
 ```
-$ conda activate RNAseq
+$ conda activate RNA
 $ ./run.sh
