@@ -111,7 +111,7 @@ In addition, it is recommended to remove the non-canonical junctions for Cufflin
 --outFilterIntronMotifs RemoveNoncanonical.
 
 
-#### --outSAMmultNmax 
+#### --outSAMmultNmax 5
 
 The --outSAMmultNmax parameter limits the number of output alignments (SAM lines) for
 multimappers. For instance, --outSAMmultNmax 1 will output exactly one SAM line for each 11
