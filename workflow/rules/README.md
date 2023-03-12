@@ -172,3 +172,4 @@ paper on DEXSeq for a discussion on why we prefer performing such analyses on th
  
 **transcript_name**
 
+## [kallisto.smk] quantifying abundances of transcripts with [kallisto](http://pachterlab.github.io/kallisto/manual.html)
