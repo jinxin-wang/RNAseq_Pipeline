@@ -153,9 +153,9 @@ In principle, you could instruct htseq-count to count for each of a gene’s tra
 specifying --idattr transcript_id. However, all reads mapping to exons shared by several transcripts will 
 then be considered ambiguous. (See second question.) Counting them for each transcript that contains the 
 exons would be possible but makes little sense for typical use cases. (See first question.) If you want to 
-perform differential expression analysis on the level of individual transcripts, maybe ahve a look at our 
+perform differential expression analysis on the level of individual transcripts, maybe have a look at the 
 paper on DEXSeq for a discussion on why we prefer performing such analyses on the level of exons instead.
+
+**gene_name**
  
-gene_name
- 
-transcript_name
+**transcript_name**
