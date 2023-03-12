@@ -121,3 +121,5 @@ min(NH,--outSAMmultNMax). If --outSAMmultNmax is equal to -1, all the alignments
 according to the order specified in --outMultimapperOrder option. If --outSAMmultNmax
 is not equal to -1, than top-scoring alignments will always be output first, even for the default
 --outMultimapperOrder Old 2.4 option.
+
+## [chk_mapping_metrics.smk] rule samtools_flagstat: check mapping metrics with [samtools flagstat](http://www.htslib.org/doc/samtools-flagstat.html)
