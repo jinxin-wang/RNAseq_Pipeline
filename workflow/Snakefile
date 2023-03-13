@@ -1,15 +1,17 @@
 import os
 
+## load json configuration file
 configfile: "workflow/config/config.json"
 
-SAMPLES,PAIRED_OR_SINGLE_END = glob_wildcards("fastq/{samples,.+}_{paired_or_single_end,[01]}.fastq.gz")
+## wildcards for samples and fastq files
+SAMPLES,PAIRED = glob_wildcards("fastq/{samples,.+}_{paired,[012]}.fastq.gz")
 FASTQ_SAMPLES, = glob_wildcards("fastq/{name}.fastq.gz")
 
 rule all:
     input : 
-        expand("bam/{sample}.bam", sample = SAMPLES),
         expand('fastq_QC/{fastq_sample}_fastqc.html', fastq_sample=FASTQ_SAMPLES),
         expand('fastq_QC_clean/{fastq_sample}_fastqc.html', fastq_sample=FASTQ_SAMPLES),
+        expand("bam/{sample}.bam", sample = SAMPLES),
         expand("mapping_QC/{sample}_flagstat.txt", sample=SAMPLES),
         expand('HTSeq_geneNAME_count/{sample}_geneNAME_count.table', sample=SAMPLES),
         expand('HTSeq_transcriptNAME_count/{sample}_transcriptNAME_count.table', sample=SAMPLES),
