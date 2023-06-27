@@ -35,5 +35,5 @@ $ emacs -nw run.sh
 ```
 - Step 4. run workflow
 ```
-$ conda activate RNA
+$ conda activate pipeline_GATK_2.1.4_V2
 $ ./run.sh
