@@ -7,6 +7,8 @@ configfile: "workflow/config/config.json"
 SAMPLES,PAIRED = glob_wildcards("fastq/{samples,.+}_{paired,[012]}.fastq.gz")
 FASTQ_SAMPLES, = glob_wildcards("fastq/{name}.fastq.gz")
 
+print(FASTQ_SAMPLES)
+
 rule all:
     input : 
         expand('fastq_QC/{fastq_sample}_fastqc.html', fastq_sample=FASTQ_SAMPLES),
@@ -20,7 +22,7 @@ rule all:
         expand("rseqc_geneBody_coverage/{sample}.geneBodyCoverage.curves.pdf", sample=SAMPLES),
         expand('rseqc_tin/{sample}.tin.xls', sample=SAMPLES),
         expand('rseqc_read_duplication/{sample}.DupRate_plot.pdf', sample=SAMPLES),
-        expand('kallisto_targetID_count/{sample}/abundance.tsv', sample=SAMPLES),
+        # expand('kallisto_targetID_count/{sample}/abundance.tsv', sample=SAMPLES),
 
 ## fastq quality control with fastqc
 include: "rules/fastqc.smk"

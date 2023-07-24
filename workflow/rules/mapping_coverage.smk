@@ -17,4 +17,4 @@ rule rseqc_geneBody_coverage:
     resources:
         mem_mb = 5120
     shell:
-        "cd rseqc_geneBody_coverage/ ;  {params.genbd} -r {input.rseqc_ref} -l 500 -i ../{input.bam} -o {wildcards.sample} 2> ../{log}"
+        "cd rseqc_geneBody_coverage/ ;  {params.genbd} -r {params.rseqc_ref} -l 500 -i ../{input.bam} -o {wildcards.sample} 2> ../{log}"

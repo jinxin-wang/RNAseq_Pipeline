@@ -21,7 +21,7 @@ rule quantification_with_HTSeq_genesID:
         " -i gene_id"
         " -r pos"
         " {params.strandness}"
-        " {params.bam}"
+        " {input.bam}"
         " {params.gtf}"
         " > {output.gene_id_count} 2> {log}"
 

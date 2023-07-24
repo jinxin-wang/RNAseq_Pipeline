@@ -4,12 +4,12 @@
 
     "fastp": {
         "app": "~/.conda/envs/pipeline_GATK_2.1.4_V2/bin/fastp",
-        "adapters": "/mnt/beegfs/userdata/i_padioleau/genome_data/adapters_for_fastp.tsv",
+        "adapters": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/adapters_for_fastp.tsv",
     },
 
     "fastqc": {
         "app": "~/.conda/envs/pipeline_GATK_2.1.4_V2/bin/fastqc",
-        "adapters": "/mnt/beegfs/userdata/i_padioleau/genome_data/adapters_for_fastqc.tsv",
+        "adapters": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/adapters_for_fastqc.tsv",
     },
 
     "samtools": {
@@ -21,14 +21,14 @@
         "outsammultnmax": "5",
         "sjdboverhang":   "99",
         "humain": {
-            "gtf": "/mnt/beegfs/userdata/i_padioleau/genome_data/gencode_hg19/gencode.v28lift37.annotation.gtf",
-            "index": "/mnt/beegfs/userdata/i_padioleau/genome_data/hg19/STAR_2.7_overhang_99/",
-            "genome_fasta": "/mnt/beegfs/scratch/Lg_PANUNZI/Konstantin/gatk/human_g1k_v37.fasta",
+            "gtf": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/gencode_hg19/gencode.v28lift37.annotation.gtf",
+            "index": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/hg19/STAR_2.7_overhang_99/",
+            "genome_fasta": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/gatk/human_g1k_v37.fasta",
         },
         "mouse": {
-            "gtf": "/mnt/beegfs/userdata/j_wang/genome_data/mm10/star_index_75/Mus_musculus.GRCm38.102.gtf",
-            "index" : "/mnt/beegfs/userdata/j_wang/genome_data/mm10/star_index_75",
-            "genome_fasta": "/mnt/beegfs/userdata/j_wang/genome_data/mm10/star_index_75/GRCm38_68.fa",
+            "gtf": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/mouse/mm10/star_index_75/Mus_musculus.GRCm38.102.gtf",
+            "index" : "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/mouse/mm10/star_index_75",
+            "genome_fasta": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/mouse/mm10/star_index_75/GRCm38_68.fa",
         },
     },
 
@@ -36,10 +36,10 @@
         "app": "~/.conda/envs/RNA/bin/htseq-count",
         "strandness": "--stranded=no",
         "humain":{
-            "gtf": "/mnt/beegfs/userdata/i_padioleau/genome_data/gencode_hg19/gencode.v28lift37.annotation.gtf",
+            "gtf": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/gencode_hg19/gencode.v28lift37.annotation.gtf",
         },
         "mouse":{
-            "gtf": "/mnt/beegfs/userdata/j_wang/genome_data/mm10/star_index_75/Mus_musculus.GRCm38.102.gtf",
+            "gtf": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/mouse/mm10/star_index_75/Mus_musculus.GRCm38.102.gtf",
         },
     },
 
@@ -50,30 +50,30 @@
     "geneBody_converage": {
         "app": "~/.conda/envs/RNA/bin/geneBody_coverage.py",
         "humain": {
-            "ref": "/mnt/beegfs/userdata/i_padioleau/genome_data/hg19/hg19.HouseKeepingGenes.bed",
+            "ref": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/hg19/hg19.HouseKeepingGenes.bed",
         },
      },
 
     "tin": {
         "app": "~/.conda/envs/RNA/bin/tin.py",
         "humain": {
-            "ref": "/mnt/beegfs/userdata/i_padioleau/genome_data/hg19/hg19.HouseKeepingGenes.bed",
+            "ref": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/hg19/hg19.HouseKeepingGenes.bed",
         },
     },
 
     "qtltool": {
         "humain": {
-            "gtf": "/mnt/beegfs/userdata/i_padioleau/genome_data/gencode_hg19/gencode.v28lift37.annotation.gtf",
+            "gtf": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/gencode_hg19/gencode.v28lift37.annotation.gtf",
         },
         "mouse": {
-            "gtf": "/mnt/beegfs/userdata/j_wang/genome_data/mm10/star_index_75/Mus_musculus.GRCm38.102.gtf",
+            "gtf": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/mouse/mm10/star_index_75/Mus_musculus.GRCm38.102.gtf",
         },
     },
 
     "kallisto": {
         "app": "~/.conda/envs/kallisto/bin/kallisto",
         "humain": {
-            "index": "/mnt/beegfs/userdata/a_iurchenko/APP/Kalisto_index/kallisto_hg38.idx",
+            "index": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/Kallisto_index/kallisto_hg38.idx",
         },
         "mouse": {
             "index": "todo",
