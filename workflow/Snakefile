@@ -40,11 +40,11 @@ include: "rules/index_bam.smk"
 include: "rules/mapping_metrics.smk"
 
 ##  check mapping coverage with rseqc
-if config["samples"] == "humain":
+if config["samples"] == "human":
     include: "rules/mapping_coverage.smk"
 
 ## check transcript integrity number with rseqc
-if config["samples"] == "humain":
+if config["samples"] == "human":
     include: "rules/transcript_integrity_number.smk"
 
 ## quantify reads per annotation with HTSeq
