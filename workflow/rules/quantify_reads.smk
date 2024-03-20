@@ -12,7 +12,7 @@ rule quantification_with_HTSeq_genesID:
         queue = "mediumq",
         htseq = config["htseq"]["app"],
         strandness = config["htseq"]["strandness"],
-        gtf = config["htseq"]["humain"]["gtf"] if config["samples"] == "humain" else config["htseq"]["mouse"]["gtf"]
+        gtf = config["htseq"][config["samples"]]["gtf"], # if config["samples"] == "humain" else config["htseq"]["mouse"]["gtf"]
     resources:
         mem_mb = 20480
     shell:
@@ -39,7 +39,7 @@ rule quantification_with_HTSeq_transcriptID:
         queue = "mediumq",
         htseq = config["htseq"]["app"],
         strandness = config["htseq"]["strandness"],
-        gtf = config["htseq"]["humain"]["gtf"] if config["samples"] == "humain" else config["htseq"]["mouse"]["gtf"] ,
+        gtf = config["htseq"][config["samples"]]["gtf"], # if config["samples"] == "humain" else config["htseq"]["mouse"]["gtf"] ,
     resources:
         mem_mb = 20480
     shell:
@@ -66,7 +66,7 @@ rule quantification_with_HTSeq_genesNAME:
         queue = "mediumq",
         htseq = config["htseq"]["app"],
         strandness = config["htseq"]["strandness"],
-        gtf = config["htseq"]["humain"]["gtf"] if config["samples"] == "humain" else config["htseq"]["mouse"]["gtf"] ,
+        gtf = config["htseq"][config["samples"]]["gtf"], # if config["samples"] == "humain" else config["htseq"]["mouse"]["gtf"] ,
     resources:
         mem_mb = 20480
     shell:
@@ -93,7 +93,7 @@ rule quantification_with_HTSeq_transcriptNAME:
         queue = "mediumq",
         htseq = config["htseq"]["app"],
         strandness = config["htseq"]["strandness"],
-        gtf = config["htseq"]["humain"]["gtf"] if config["samples"] == "humain" else config["htseq"]["mouse"]["gtf"] ,
+        gtf = config["htseq"][config["samples"]]["gtf"], # if config["samples"] == "humain" else config["htseq"]["mouse"]["gtf"] ,
     resources:
         mem_mb = 20480
     shell:

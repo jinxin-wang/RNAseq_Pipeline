@@ -1,7 +1,15 @@
 {
     "samples": "human",
     "paired": True,
-
+    
+    "do_qc": True,
+    "do_fastp": True,
+    "do_bam": True,
+    "do_mqc": True,
+    "do_htseq": True,
+    "do_rseqc": True,
+    "do_kallisto": True,
+    
     "fastp": {
         "app": "~/.conda/envs/pipeline_GATK_2.1.4_V2/bin/fastp",
         "adapters": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/adapters_for_fastp.tsv",
@@ -20,7 +28,7 @@
         "app": "/mnt/beegfs/software/star/2.7.1a/bin/STAR",
         "outsammultnmax": "5",
         "sjdboverhang":   "99",
-        "humain": {
+        "human": {
             "gtf": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/gencode_hg19/gencode.v28lift37.annotation.gtf",
             "index": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/hg19/STAR_2.7_overhang_99/",
             "genome_fasta": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/gatk/human_g1k_v37.fasta",
@@ -35,7 +43,7 @@
     "htseq": {
         "app": "~/.conda/envs/RNA/bin/htseq-count",
         "strandness": "--stranded=no",
-        "humain":{
+        "human":{
             "gtf": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/gencode_hg19/gencode.v28lift37.annotation.gtf",
         },
         "mouse":{
@@ -49,20 +57,20 @@
     
     "geneBody_converage": {
         "app": "~/.conda/envs/RNA/bin/geneBody_coverage.py",
-        "humain": {
+        "human": {
             "ref": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/hg19/hg19.HouseKeepingGenes.bed",
         },
      },
 
     "tin": {
         "app": "~/.conda/envs/RNA/bin/tin.py",
-        "humain": {
+        "human": {
             "ref": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/hg19/hg19.HouseKeepingGenes.bed",
         },
     },
 
     "qtltool": {
-        "humain": {
+        "human": {
             "gtf": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/gencode_hg19/gencode.v28lift37.annotation.gtf",
         },
         "mouse": {
@@ -72,8 +80,12 @@
 
     "kallisto": {
         "app": "~/.conda/envs/kallisto/bin/kallisto",
-        "humain": {
+        "trans2genes": "workflow/scripts/kallisto/transcript_to_genes.R", 
+        "transfilter": "workflow/scripts/kallisto/transcript_filter.R",
+        "human": {
             "index": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/Kallisto_index/kallisto_hg38.idx",
+            "id2genes": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/Kallisto_index/id2gene_gencode23_uniq.txt",
+            "genes_expr": "/mnt/beegfs/userdata/a_ivashkin/references/genome_data/Kallisto_index/genes_in_expression.txt",
         },
         "mouse": {
             "index": "todo",

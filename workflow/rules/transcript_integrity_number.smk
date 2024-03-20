@@ -12,7 +12,7 @@ rule rseqc_tin:
      params:
          queue = "mediumq",
          tin = config["tin"]["app"],
-         ref = config["tin"]["humain"]["ref"],
+         ref = config["tin"]["human"]["ref"],
      resources:
          mem_mb = 51200
      shell:
@@ -36,5 +36,6 @@ rule rseqc_readDuplication:
         read_dup = config["read_dup"]["app"]
     resources:
         mem_mb = 51200
+    conda: 'routine'
     shell:
         "cd rseqc_read_duplication/; {params.read_dup} -i ../{input.bam} -o {wildcards.sample} 2> ../{log}"

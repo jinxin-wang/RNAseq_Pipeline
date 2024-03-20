@@ -7,22 +7,25 @@ configfile: "workflow/config/config.json"
 SAMPLES,PAIRED = glob_wildcards("fastq/{samples,.+}_{paired,[012]}.fastq.gz")
 FASTQ_SAMPLES, = glob_wildcards("fastq/{name}.fastq.gz")
 
-print(FASTQ_SAMPLES)
-
 rule all:
     input : 
-        expand('fastq_QC/{fastq_sample}_fastqc.html', fastq_sample=FASTQ_SAMPLES),
-        expand('fastq_QC_clean/{fastq_sample}_fastqc.html', fastq_sample=FASTQ_SAMPLES),
-        expand("bam/{sample}.bam", sample = SAMPLES),
-        expand("mapping_QC/{sample}_flagstat.txt", sample=SAMPLES),
-        expand('HTSeq_geneNAME_count/{sample}_geneNAME_count.table', sample=SAMPLES),
-        expand('HTSeq_transcriptNAME_count/{sample}_transcriptNAME_count.table', sample=SAMPLES),
-        expand('HTSeq_geneID_count/{sample}_geneID_count.table', sample=SAMPLES),
-        expand('HTSeq_transcriptID_count/{sample}_transcriptID_count.table', sample=SAMPLES),
-        expand("rseqc_geneBody_coverage/{sample}.geneBodyCoverage.curves.pdf", sample=SAMPLES),
-        expand('rseqc_tin/{sample}.tin.xls', sample=SAMPLES),
-        expand('rseqc_read_duplication/{sample}.DupRate_plot.pdf', sample=SAMPLES),
-        # expand('kallisto_targetID_count/{sample}/abundance.tsv', sample=SAMPLES),
+        expand('fastq_QC/{fastq_sample}_fastqc.html', fastq_sample=FASTQ_SAMPLES if config["do_qc"] else []),
+        expand('fastq_clean/{fastq_sample}.fastq.gz', fastq_sample=FASTQ_SAMPLES if config["do_fastp"] else []),
+        expand('fastq_QC_clean/{fastq_sample}_fastqc.html', fastq_sample=FASTQ_SAMPLES if config["do_qc"] else []),
+        expand("bam/{sample}.bam", sample=SAMPLES if config["do_bam"] else []),
+        expand("mapping_QC/{sample}_flagstat.txt", sample=SAMPLES if config["do_mqc"] else []),
+        expand('HTSeq_geneNAME_count/{sample}_geneNAME_count.table', sample=SAMPLES if config["do_htseq"] else []),
+        expand('HTSeq_transcriptNAME_count/{sample}_transcriptNAME_count.table', sample=SAMPLES if config["do_htseq"] else []),
+        expand('HTSeq_geneID_count/{sample}_geneID_count.table', sample=SAMPLES if config["do_htseq"] else []),
+        expand('HTSeq_transcriptID_count/{sample}_transcriptID_count.table', sample=SAMPLES if config["do_htseq"] else []),
+        expand("rseqc_geneBody_coverage/{sample}.geneBodyCoverage.curves.pdf", sample=SAMPLES if config["do_rseqc"] else []),
+        expand('rseqc_tin/{sample}.tin.xls', sample=SAMPLES if config["do_rseqc"] else []),
+        expand('rseqc_read_duplication/{sample}.DupRate_plot.pdf', sample=SAMPLES if config["do_rseqc"] else []),
+        expand('kallisto_targetID_count/{sample}/abundance.tsv', sample=SAMPLES if config["do_kallisto"] else []),
+        expand("kallisto_targetID_count/tpm_{name}.tsv", name=['transcript', 'genes', 'kassandra'] if config["do_kallisto"] else []), 
+
+## quantifying abundances of transcripts with kallisto
+include: "rules/kallisto.smk"
 
 ## fastq quality control with fastqc
 include: "rules/fastqc.smk"
@@ -50,5 +53,3 @@ if config["samples"] == "human":
 ## quantify reads per annotation with HTSeq
 include: "rules/quantify_reads.smk"
 
-## quantifying abundances of transcripts with kallisto
-include: "rules/kallisto.smk"

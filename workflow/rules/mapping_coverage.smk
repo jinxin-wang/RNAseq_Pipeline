@@ -13,8 +13,9 @@ rule rseqc_geneBody_coverage:
     params:
         queue = "mediumq",
         genbd = config["geneBody_converage"]["app"],
-        rseqc_ref = config["geneBody_converage"]["humain"]["ref"]
+        rseqc_ref = config["geneBody_converage"]["human"]["ref"]
     resources:
         mem_mb = 5120
+    conda: "routine"
     shell:
         "cd rseqc_geneBody_coverage/ ;  {params.genbd} -r {params.rseqc_ref} -l 500 -i ../{input.bam} -o {wildcards.sample} 2> ../{log}"

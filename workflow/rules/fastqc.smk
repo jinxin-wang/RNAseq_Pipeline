@@ -7,7 +7,7 @@ rule fastqc:
         'fastq_QC/{fastq_sample}_fastqc.zip'
     log:
         "logs/fastq_QC/{fastq_sample}_fastqc.html.log"
-    threads : 16
+    threads : 4
     resources:
         mem_mb = 51200
     params:
@@ -15,6 +15,7 @@ rule fastqc:
         fastqc = config["fastqc"]["app"],
         adapters = config["fastqc"]["adapters"],
     shell:
+        'module load java ; '
         '{params.fastqc} -t {threads} -a {params.adapters} -o fastq_QC/ {input.fastq} 2> {log}'
 
 
@@ -27,7 +28,7 @@ rule fastqc_clean:
         'fastq_QC_clean/{fastq_sample}_fastqc.zip'
     log:
         "logs/fastq_QC_clean/{fastq_sample}_fastqc.html.log"
-    threads : 16
+    threads : 4
     resources:
         mem_mb = 51200
     params:
@@ -35,4 +36,5 @@ rule fastqc_clean:
         fastqc = config["fastqc"]["app"],
         adapters = config["fastqc"]["adapters"]
     shell:
+        'module load java ; '
         '{params.fastqc} -t {threads} -a {params.adapters} -o fastq_QC_clean/ {input} 2> {log}'

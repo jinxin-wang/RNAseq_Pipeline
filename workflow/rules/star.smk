@@ -13,12 +13,12 @@ rule star:
         star  = config["star"]["app"],
         outsammultnmax = config["star"]["outsammultnmax"],
         sjdbOverhang = config["star"]["sjdboverhang"],
-        index = config["star"]["humain"]["index"] if config["samples"] == "humain" else config["star"]["mouse"]["index"],
-        genome_fasta = config["star"]["humain"]["genome_fasta"] if config["samples"] == "humain" else config["star"]["mouse"]["genome_fasta"],
-        star_gtf = config["star"]["humain"]["gtf"] if config["samples"] == "humain" else config["star"]["mouse"]["gtf"],
+        index = config["star"][config["samples"]]["index"], # if config["samples"] == "humain" else config["star"]["mouse"]["index"],
+        genome_fasta = config["star"][config["samples"]]["genome_fasta"], # if config["samples"] == "humain" else config["star"]["mouse"]["genome_fasta"],
+        star_gtf = config["star"][config["samples"]]["gtf"], # if config["samples"] == "humain" else config["star"]["mouse"]["gtf"],
     log:
         "logs/bam/{sample}.bam.log"
-    threads: 24
+    threads: 12
     resources:
         mem_mb = 102400
     shell:
